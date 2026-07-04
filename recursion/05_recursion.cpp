@@ -1,6 +1,7 @@
 // Indirect Recusion
 #include<iostream>
 using namespace std;
+// Function prototyping, As the function funA() is called inside the function funB(), so we need to declare the function funA() before the function funB().
 void funA(int n);
 void funB(int n);
 //Recursive method A

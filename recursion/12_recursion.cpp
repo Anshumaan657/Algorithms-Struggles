@@ -1,4 +1,4 @@
-//Febonacci series using recursion
+//Febonacci series using recursion(without memoization)
 #include<iostream>
 using namespace std;
 int fib(int n){
@@ -13,7 +13,7 @@ int fib(int n){
 int main(){
     int n;
     n =10;
-    cout<<n<<"th Fibonacci number is: "<<fib(n)<<endl;
+    cout<<n<<"th Fibonacci number is: "<<fib(n-1)<<endl;
     return 0;
 
 }

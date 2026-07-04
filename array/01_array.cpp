@@ -23,7 +23,7 @@ int main(){
     }
 
     //4
-    int D[] = {2,4,6,8,10};
+    int D[] = {2,4,6,8,10};// This will automatically take the size of the array as 5
     cout<<"\nD = ";
     for (int i =0; i<5; i++){
         cout<<D[i]<<" ";

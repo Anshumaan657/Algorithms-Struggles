@@ -1,4 +1,5 @@
 //Recursion witout the static variable
+// Uses recursion to add all numbers from 1 to n and returns the total sum.
 #include<iostream>
 using namespace std;
 

@@ -9,7 +9,7 @@ using namespace std;
         {
             x++;
             return fun1(n-1)+x;
-            
+                    
         }
         return 0;
     }
