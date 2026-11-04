@@ -1,0 +1,59 @@
+
+from typing import List
+
+class Solution:
+    def minOperations(self, nums: List[int], x: int, k: int) -> int:
+        n = len(nums)
+        vals = sorted(set(nums))
+        m = len(vals)
+        ranks = {v: i + 1 for i, v in enumerate(vals)}
+
+        count = [0] * (m + 1)
+        sums = [0] * (m + 1)
+
+        def update(v, delta):
+            i = ranks[v]
+            while i <= m:
+                count[i] += delta
+                sums[i] += v * delta
+                i += i & -i
+
+        costs = []
+        total = 0
+
+        for i, v in enumerate(nums):
+            update(v, 1)
+            total += v
+
+            if i >= x:
+                update(nums[i - x], -1)
+                total -= nums[i - x]
+
+            if i < x - 1:
+                continue
+
+            p = c = s = 0
+            step = 1 << (m.bit_length() - 1)
+
+            while step:
+                j = p + step
+                if j <= m and c + count[j] < (x + 1) // 2:
+                    p = j
+                    c += count[j]
+                    s += sums[j]
+                step >>= 1
+
+            median = vals[p]
+            cost = total - 2 * s + median * (2 * c - x)
+            costs.append(cost)
+
+        dp = [0] * (n - k * x + 1)
+
+        for i in range(k):
+            best = float('inf')
+
+            for j in range(len(dp)):
+                best = min(best, dp[j] + costs[i * x + j])
+                dp[j] = best
+
+        return best
