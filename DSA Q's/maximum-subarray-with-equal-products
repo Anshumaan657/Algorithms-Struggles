@@ -1,0 +1,24 @@
+from math import gcd
+from typing import List
+
+class Solution:
+    def maxLength(self, nums: List[int]) -> int:
+        best = 0
+        n = len(nums)
+
+        for left in range(n):
+            product = 1
+            current_gcd = 0
+            current_lcm = 1
+
+            for right in range(left, n):
+                value = nums[right]
+
+                product *= value
+                current_gcd = gcd(current_gcd, value)
+                current_lcm = current_lcm * value // gcd(current_lcm, value)
+
+                if product == current_gcd * current_lcm:
+                    best = max(best, right - left + 1)
+
+        return best
